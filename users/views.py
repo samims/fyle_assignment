@@ -10,6 +10,8 @@ from rest_framework import status
 class RegisterAPIView(APIView):
     """
     View for SignUp
+    AnonPermission is making sure
+    that only anonymous Registers
     """
     serializer_class = RegisterSerializer
     queryset = get_user_model().objects.filter(is_active=True)

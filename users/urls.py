@@ -4,9 +4,9 @@ from rest_framework_jwt.views import ObtainJSONWebToken, RefreshJSONWebToken, Ve
 from .views import RegisterAPIView
 
 urlpatterns = [
-    path('signup/', RegisterAPIView.as_view()),
-    path('api-token-auth/', ObtainJSONWebToken.as_view()),
-    path('api-token-refresh/', RefreshJSONWebToken.as_view()),
-    path('api-token-verify/', VerifyJSONWebToken.as_view()),
+    path('signup/', RegisterAPIView.as_view(), name='register'),
+    path('api-token-auth/', ObtainJSONWebToken.as_view(), name='login'),
+    path('api-token-refresh/', RefreshJSONWebToken.as_view(), 'refresh_token'),
+    path('api-token-verify/', VerifyJSONWebToken.as_view(), name='verify_token'),
 
 ]
