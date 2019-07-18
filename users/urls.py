@@ -3,6 +3,10 @@ from rest_framework_jwt.views import ObtainJSONWebToken, RefreshJSONWebToken, Ve
 
 from .views import RegisterAPIView
 
+
+app_name = 'users'
+
+
 urlpatterns = [
     path('signup/', RegisterAPIView.as_view(), name='register'),
     path('api-token-auth/', ObtainJSONWebToken.as_view(), name='login'),

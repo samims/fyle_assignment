@@ -9,6 +9,9 @@ class BankSerializers(serializers.ModelSerializer):
 
 
 class BranchSerializers(serializers.ModelSerializer):
+    """
+    Serializer for Branches
+    """
     bank = BankSerializers(read_only=True)
 
     class Meta:

@@ -19,4 +19,5 @@ class RegisterSerializer(serializers.ModelSerializer):
         overriding to avoid storing raw text password
         """
         user = get_user_model().objects.create_user(**validated_data)
+        validated_data.pop('password')
         return user
