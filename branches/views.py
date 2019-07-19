@@ -19,7 +19,7 @@ class BankDetailAPIView(generics.ListAPIView):
 
         :return: query after filtering by ifsc list
         """
-        queryset = self.queryset
+        queryset = super(BankDetailAPIView, self).get_queryset() # to avoid caching
         ifsc = self.request.query_params.get("ifsc")
         if ifsc:
             # supporting multiple param value
@@ -34,7 +34,7 @@ class BranchSearchAPIView(generics.ListAPIView):
     """
 
     serializer_class = BranchSerializers
-    queryset = Branches.objects.select_related("bank").all().order_by("bank")
+    queryset = Branches.objects.select_related("bank").all()
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
@@ -43,7 +43,7 @@ class BranchSearchAPIView(generics.ListAPIView):
         """
         bank_name = self.request.query_params.get("name")
         city = self.request.query_params.get("city")
-        qs = self.queryset
+        qs = super(BranchSearchAPIView, self).get_queryset()
         if bank_name:
             qs = qs.filter(bank__name__icontains=bank_name)
         if city:
